@@ -1,0 +1,10 @@
+---
+
+influxdb_enabled: yes
+influxdb_ver: latest_amd64
+influxdb_dir: /opt/influxdb/
+influxdb_log_dir: /var/log/influxdb/
+influxdb_bind_addr: 0.0.0.0
+influxdb_admin_port: 8083
+influxdb_api_port: 8086
+influxdb_raft_port: 8090

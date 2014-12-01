@@ -1,0 +1,6 @@
+---
+
+- name: Install whisper
+  pip: name=whisper executable={{graphite_api_dir}}/env/bin/pip
+  sudo: yes
+  sudo_user: "{{graphite_api_user}}"

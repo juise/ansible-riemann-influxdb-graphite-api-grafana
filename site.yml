@@ -1,0 +1,10 @@
+- hosts: all
+  user: root
+  roles:
+  - python
+  - nginx
+  - influxdb
+  - graphite-api
+  - grafana
+#  vars_files:
+# - defaults/main.yml

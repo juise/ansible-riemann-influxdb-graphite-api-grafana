@@ -1,0 +1,10 @@
+---
+
+- name: Install python
+  apt: pkg={{item}} state=present
+  with_items:
+  - python
+  - python-dev
+  - python-pip
+  - python-setuptools
+  - python-virtualenv

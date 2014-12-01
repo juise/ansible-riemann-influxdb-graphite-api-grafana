@@ -1,0 +1,29 @@
+---
+
+- name: Download grafana
+  get_url: url=http://grafanarel.s3.amazonaws.com/grafana-{{grafana_ver}}.tar.gz dest=/tmp/grafana-{{grafana_ver}}.tar.gz
+
+- name: Create grafana dir
+  file: path={{grafana_dir}} owner={{nginx_user}} group={{nginx_group}} state=directory
+
+- name: Install grafana
+  unarchive: src=/tmp/grafana-{{grafana_ver}}.tar.gz dest={{grafana_dir}} owner={{nginx_user}} group={{nginx_group}}
+
+- name: Link installed grafana with default
+  file: src={{grafana_dir}}/grafana-{{grafana_ver}} dest={{grafana_dir}}/grafana state=link
+
+- name: Configure grafana
+  template: src=config.js.j2 dest={{grafana_dir}}/grafana/config.js
+
+- name: Setup grafana dir permissions
+  file: path={{grafana_dir}} owner={{nginx_user}} group={{nginx_group}} recurse=yes
+
+- name: Configure nginx grafana site
+  template: src=nginx-grafana.conf.j2 dest={{nginx_sites_available}}/grafana.conf
+  notify: [nginx reload]
+  when: nginx_enabled and grafana_nginx_enabled
+
+- name: Enable nginx grafana site
+  file: src={{nginx_sites_available}}/grafana.conf dest={{nginx_sites_enabled}}/grafana.conf state=link
+  notify: [nginx reload]
+  when: nginx_enabled and grafana_nginx_enabled

@@ -1,0 +1,12 @@
+---
+
+- name: Install influxdb
+  pip: name={{item}} executable={{graphite_api_dir}}/env/bin/pip
+  sudo: yes
+  sudo_user: "{{graphite_api_user}}"
+  with_items:
+  - influxdb
+  - graphite-influxdb
+
+#- name: Configure graphite-api for work with influxdb
+#  template: owner={{graphite_api_user}} group={{graphite_api_group}} dest={{graphite_api_home}}/config.yml src=config.yml.j2

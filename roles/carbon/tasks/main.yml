@@ -1,0 +1,5 @@
+---
+
+- include: graphite-api.yml
+  when: graphite_api_enabled
+  tags: [graphite-api]

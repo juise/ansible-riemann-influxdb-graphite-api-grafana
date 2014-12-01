@@ -1,0 +1,29 @@
+---
+
+- name: Install twisted
+  pip: name=twisted executable={{graphite_api_dir}}/env/bin/pip version=13.0
+  sudo: yes
+  sudo_user: "{{graphite_api_user}}"
+
+- name: Install carbon
+  pip: name=carbon executable={{graphite_api_dir}}/env/bin/pip extra_args="--install-option='--prefix={{graphite_api_dir}}' --install-option='--install-lib={{graphite_api_dir}}/lib'"
+  sudo: yes
+  sudo_user: "{{graphite_api_user}}"
+  changed_when: False
+
+- template: src=carbon_cache.py.j2 dest={{graphite_api_dir}}/bin/carbon_cache.py owner={{graphite_api_user}} group={{graphite_api_group}} mode=0755
+
+- name: Configure carbon pt. 1
+  template: src=carbon.conf.j2 dest={{graphite_api_dir}}/conf/carbon.conf owner={{graphite_api_user}} group={{graphite_api_group}}
+  notify: [ graphite-carbon restart ]
+
+- name: Configure carbon pt. 2
+  template: src=storage-schemas.conf.j2 dest={{graphite_api_dir}}/conf/storage-schemas.conf owner={{graphite_api_user}} group={{graphite_api_group}}
+  notify: [ graphite-carbon restart ]
+
+- name: Configure carbon pt. 3
+  template: src=storage-aggregation.conf.j2 dest={{graphite_api_dir}}/conf/storage-aggregation.conf owner={{graphite_api_user}} group={{graphite_api_group}}
+
+- name: Configure carbon pt. 4
+  template: src=graphite-carbon.j2 dest=/etc/default/graphite-carbon
+

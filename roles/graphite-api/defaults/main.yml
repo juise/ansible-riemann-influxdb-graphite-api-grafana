@@ -1,0 +1,56 @@
+---
+
+graphite_api_enabled: yes
+graphite_api_dir: /opt/graphite
+graphite_api_user: graphite
+graphite_api_group: "{{graphite_api_user}}"
+graphite_api_timezone: UTC
+graphite_api_search_index: "{{graphite_api_dir}}/index"
+
+graphite_api_influxdb: yes
+
+graphite_api_whisper: no
+graphite_api_whisper_directories:
+- "{{graphite_api_dir}}/storage/whisper"
+
+#graphite_api_carbon: yes
+#graphite_api_carbon_udp: no
+#graphite_api_carbon_udp_address: 0.0.0.0
+#graphite_api_carbon_udp_port: 2003
+#
+#graphite_api_storage_schemas:
+#- name: stats
+#  priority: 110
+#  pattern: ^stats\..*
+#  retentions: "10s:6h,1m:7d,10m:1y"
+#- name: collectd
+#  pattern: ^collectd\..*
+#  retentions: "10s:6h,1m:7d,10m:1y"
+#- name: carbon
+#  pattern: ^carbon\..*
+#  retentions: "60s:90d"
+#- name: default
+#  pattern: ".*"
+#  retentions: "1m:1d,10m:7d"
+
+graphite_api_gunicorn_host: "{{inventory_hostname}}"
+graphite_api_gunicorn_port: 8080
+
+graphite_api_nginx: yes
+graphite_api_nginx_host: "{{inventory_hostname}}"
+graphite_api_nginx_port: 80
+graphite_api_nginx_allow_origin: '$http_origin'
+
+nginx_enabled: yes
+nginx_dir: /etc/nginx
+nginx_sites_enabled: "{{nginx_dir}}/sites-enabled"
+nginx_sites_available: "{{nginx_dir}}/sites-available"
+
+influxdb_enabled: yes
+influxdb_host: "{{inventory_hostname}}"
+influxdb_port: 8086
+influxdb_db: metrics
+influxdb_user: root
+influxdb_pass: root
+
+#python_enabled: yes

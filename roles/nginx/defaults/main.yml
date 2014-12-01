@@ -1,0 +1,18 @@
+---
+
+nginx_enabled: yes
+nginx_user: www-data
+nginx_dir: /etc/nginx
+nginx_sites_enabled: "{{nginx_dir}}/sites-enabled"
+nginx_sites_available: "{{nginx_dir}}/sites-available"
+nginx_multi_accept: yes
+nginx_worker_processes: auto
+nginx_worker_connections: 1024
+nginx_sendfile: yes
+nginx_tcp_nodelay: yes
+nginx_tcp_nopush: yes
+nginx_keepalive_timeout: 65
+nginx_keepalive_requests: 100
+nginx_gzip: yes
+nginx_access_log: /var/log/nginx/access.log
+nginx_error_log: /var/log/nginx/error.log

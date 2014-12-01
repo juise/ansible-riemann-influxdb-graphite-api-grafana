@@ -1,0 +1,15 @@
+---
+
+- name: Download influxdb
+  get_url: url=http://s3.amazonaws.com/influxdb/influxdb_{{influxdb_ver}}.deb dest=/tmp/influxdb_{{influxdb_ver}}.deb
+
+- name: Install influxdb
+  command: dpkg -i /tmp/influxdb_{{influxdb_ver}}.deb
+
+- name: Create influxdb log dir
+  file: path={{influxdb_log_dir}} owner=influxdb group=influxdb state=directory
+
+- name: Configure influxdb
+  template: src=config.toml.j2 dest={{influxdb_dir}}/shared/config.toml
+  notify:
+    - influxdb restart

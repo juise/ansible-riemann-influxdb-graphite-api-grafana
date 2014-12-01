@@ -1,0 +1,19 @@
+---
+
+grafana_enabled: yes
+grafana_ver: 1.9.0-rc1
+grafana_dir: /opt/grafana
+
+grafana_nginx_enabled: yes
+grafana_nginx_host: "{{inventory_hostname}}"
+grafana_nginx_port: 81
+
+graphite_host: "{{inventory_hostname}}"
+graphite_port: 80
+
+nginx_enabled: yes
+nginx_user: www-data
+nginx_group: "{{nginx_user}}"
+nginx_dir: /etc/nginx
+nginx_sites_enabled: "{{nginx_dir}}/sites-enabled"
+nginx_sites_available: "{{nginx_dir}}/sites-available"
