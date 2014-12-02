@@ -1,7 +1,4 @@
 ---
 
-- name: graphite-api restart
-  service: name=graphite-api state=restarted
-
-- name: graphite-carbon restart
-  service: name=graphite-carbon state=restarted
+- name: carbon restart
+  service: name=carbon-cache state=restarted

@@ -4,3 +4,7 @@
   pip: name=whisper executable={{graphite_api_dir}}/env/bin/pip
   sudo: yes
   sudo_user: "{{graphite_api_user}}"
+
+- name: Touch index file
+  file: state=touch path={{graphite_api_search_index}} owner={{graphite_api_user}} group={{graphite_api_group}}
+  changed_when: False

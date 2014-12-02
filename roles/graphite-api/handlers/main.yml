@@ -1,7 +1,0 @@
----
-
-- name: uwsgi restart
-  service: name=uwsgi state=restarted
-
-- name: uwsgi reload
-  service: name=uwsgi state=reloaded

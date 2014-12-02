@@ -1,6 +1,6 @@
 ---
 
-grafana_enabled: yes
+grafana_enabled: no
 grafana_ver: 1.9.0-rc1
 grafana_dir: /opt/grafana
 

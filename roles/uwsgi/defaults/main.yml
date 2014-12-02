@@ -1,6 +1,6 @@
 ---
 
-uwsgi_enabled: yes
+uwsgi_enabled: no
 uwsgi_dir: /etc/uwsgi
 uwsgi_apps_enabled: "{{uwsgi_dir}}/apps-enabled"
 uwsgi_apps_available: "{{uwsgi_dir}}/apps-available"

@@ -3,9 +3,10 @@
   roles:
   - python
   - nginx
-  - influxdb
   - uwsgi
+  - carbon
+  - influxdb
   - graphite-api
   - grafana
-#  vars_files:
-# - defaults/main.yml
+  vars_files:
+  - defaults/main.yml

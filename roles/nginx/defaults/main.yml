@@ -1,6 +1,6 @@
 ---
 
-nginx_enabled: yes
+nginx_enabled: no
 nginx_user: www-data
 nginx_dir: /etc/nginx
 nginx_sites_enabled: "{{nginx_dir}}/sites-enabled"

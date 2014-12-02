@@ -1,0 +1,38 @@
+---
+
+- name: Install carbon
+  pkg: name=graphite-carbon
+
+- name: graphite-api-carbon | Install Twisted
+  pip: name=twisted executable={{graphite_api_home}}/env/bin/pip version=13.0
+  sudo: yes
+  sudo_user: "{{graphite_api_user}}"
+
+- name: graphite-api-carbon | Install Graphit Carbon
+  pip: name=carbon executable={{graphite_api_home}}/env/bin/pip extra_args="--install-option='--prefix={{graphite_api_home}}' --install-option='--install-lib={{graphite_api_home}}/lib'"
+  sudo: yes
+  sudo_user: "{{graphite_api_user}}"
+  changed_when: False
+
+- template: src=carbon_cache.py.j2 dest={{graphite_api_home}}/bin/carbon_cache.py owner={{graphite_api_user}} group={{graphite_api_group}} mode=0755
+
+- name: graphite-api-carbon | Compile Carbon configuration pt. 1
+  template: src=carbon.conf.j2 dest={{graphite_api_home}}/conf/carbon.conf owner={{graphite_api_user}} group={{graphite_api_group}}
+  notify: [ graphite-carbon restart ]
+
+- name: graphite-api-carbon | Compile Carbon configuration pt. 2
+  template: src=storage-schemas.conf.j2 dest={{graphite_api_home}}/conf/storage-schemas.conf owner={{graphite_api_user}} group={{graphite_api_group}}
+  notify: [ graphite-carbon restart ]
+
+- name: graphite-api-carbon | Compile Carbon configuration pt. 3
+  template: src=storage-aggregation.conf.j2 dest={{graphite_api_home}}/conf/storage-aggregation.conf owner={{graphite_api_user}} group={{graphite_api_group}}
+
+- name: graphite-api-carbon | Compile Carbon configuration pt. 4
+  template: src=graphite-carbon.j2 dest=/etc/default/graphite-carbon
+
+- name: graphite-api-carbon | Setup upstart
+  template: dest=/etc/init/graphite-carbon.conf src=upstart-carbon.conf.j2
+  notify: [ graphite-api restart ]
+
+- name: graphite-api-carbon | Ensure graphite-carbon is started
+  service: name=graphite-carbon state=started enabled=yes

@@ -22,18 +22,13 @@
   sudo: yes
   sudo_user: "{{graphite_api_user}}"
   with_items:
-#  - flask
-#  - flask-cache
-#  - gunicorn
+  - flask
+  - flask-cache
   - https://github.com/Dieterbe/graphite-api/tarball/support-templates2
 #  - graphite-api use instead patched version ^
 
 - name: Configure graphite-api
   template: src=config.yml.j2 dest={{graphite_api_dir}}/config.yml owner={{graphite_api_user}} group={{graphite_api_group}}
-
-#- name: Touch graphite-api index file
-#  file: state=touch path={{graphite_api_search_index}} owner={{graphite_api_user}} group={{graphite_api_group}}
-#  changed_when: False
 
 - include: whisper.yml
   tags: [graphite-api, graphite-api-whisper]

@@ -1,59 +1,19 @@
 ---
 
-graphite_api_enabled: yes                           # The role is enabled
+carbon_enabled: no
+carbon_dir: /etc/carbon
+carbon_log_dir: /var/log/carbon
+carbon_max_updates_per_second: 10000
+carbon_max_creates_per_second: 1000
 
-graphite_api_home: /opt/graphite                    # Installation directory
-graphite_api_user: graphite                         # Set owner
-graphite_api_group: "{{ graphite_api_user }}"       # Set group
+carbon_udp_enabled: false
+carbon_udp_bind_addr: 0.0.0.0
+carbon_udp_port: 2003
 
-# Setup Graphite-API
-graphite_api_timezone: Europe/Berlin
-graphite_api_whisper_directories:
-- "{{graphite_api_home}}/storage/whisper"
-graphite_api_search_index: "{{graphite_api_home}}/index"
-
-# Setup Graphite-Carbon
-graphite_api_carbon: yes                            # Install and setup Graphite Carbon
-graphite_api_carbon_udp: no                         # Enable Carbon UDP listener
-graphite_api_carbon_udp_address: 0.0.0.0            # Listen address
-graphite_api_carbon_udp_port: 2003                  # Listen port
-
-# Setup Graphite-Whisper
-graphite_api_whisper: yes
-
-# Setup storage schemas
-graphite_api_storage_schemas:
-- name: stats
-  priority: 110
-  pattern: ^stats\..*
-  retentions: "10s:6h,1m:7d,10m:1y"
-- name: collectd
-  pattern: ^collectd\..*
-  retentions: "10s:6h,1m:7d,10m:1y"
+carbon_storage_schemas:
 - name: carbon
   pattern: ^carbon\..*
   retentions: "60s:90d"
-- name: default
+- name: default_1min_for_1day
   pattern: ".*"
   retentions: "1m:1d,10m:7d"
-
-# Setup Gunicorn
-graphite_api_gunicorn_host: 127.0.0.1
-graphite_api_gunicorn_port: 8080
-
-# Setup NGINX
-graphite_api_nginx: yes                             # Proxy the api with nginx
-graphite_api_nginx_host: "{{inventory_hostname}}"
-graphite_api_nginx_port: 80
-graphite_api_nginx_auth: no                         # Enable HTTP Authorization
-graphite_api_nginx_auth_users: []                   # Setup HTTP Auth users
-                                                    # graphite_api_nginx_auth_users:
-                                                    #   - { name: team, password: secret }
-
-graphite_api_nginx_allow_origin: ""                 # Set domain for enable CORS
-
-# The following parameters are for toggling dependencies
-nginx_enabled: yes
-python_enabled: yes
-
-# vim:sw=2

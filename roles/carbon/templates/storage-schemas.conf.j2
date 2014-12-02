@@ -7,12 +7,11 @@
 #  [name]
 #  pattern = regex
 #  retentions = timePerPoint:timeToStore, timePerPoint:timeToStore, ...
-{% for schema in graphite_api_storage_schemas %}
-
+{% for schema in carbon_storage_schemas %}
 [{{schema['name']}}]
 {% for name, value in schema.items() %}
 {% if name != 'name' %}
-{{ name }} = {{ value }}
+{{name}} = {{value}}
 {% endif %}
 {% endfor %}
 {% endfor %}

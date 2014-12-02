@@ -1,6 +1,6 @@
 ---
 
-influxdb_enabled: yes
+influxdb_enabled: no
 influxdb_ver: latest_amd64
 influxdb_dir: /opt/influxdb/
 influxdb_log_dir: /var/log/influxdb/

@@ -21,11 +21,11 @@ whisper:
 {% endif %}
 {% if graphite_api_influxdb %}
 influxdb:
-   host: {{influxdb_host}}
-   port: {{influxdb_port}}
-   user: {{influxdb_user}}
-   pass: {{influxdb_pass}}
-   db:   {{influxdb_db}}
+   host: {{graphite_api_influxdb_host}}
+   port: {{graphite_api_influxdb_port}}
+   user: {{graphite_api_influxdb_user}}
+   pass: {{graphite_api_influxdb_pass}}
+   db:   {{graphite_api_influxdb_db}}
    schema:
      - ['', 30]
      - ['high-res-metrics', 10]
