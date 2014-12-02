@@ -1,7 +1,7 @@
 ---
 
 - name: Install carbon
-  apt: pkg=graphite-carbon
+  apt: pkg=graphite-carbon update_cache=yes cache_valid_time=60
 
 - name: Enable carbon
   template: src=graphite-carbon.j2 dest=/etc/default/graphite-carbon

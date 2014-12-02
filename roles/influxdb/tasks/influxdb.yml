@@ -12,4 +12,4 @@
 - name: Configure influxdb
   template: src=config.toml.j2 dest={{influxdb_dir}}/shared/config.toml
   notify:
-    - influxdb restart
+    - influxdb reload

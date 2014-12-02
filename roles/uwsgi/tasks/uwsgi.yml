@@ -1,7 +1,7 @@
 ---
 
 - name: Install uwsgi
-  apt: pkg={{item}}
+  apt: pkg={{item}} update_cache=yes cache_valid_time=60
   with_items:
   - uwsgi-plugin-python
   - uwsgi
