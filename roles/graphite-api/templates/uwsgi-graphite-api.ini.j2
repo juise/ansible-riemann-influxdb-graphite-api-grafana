@@ -1,0 +1,8 @@
+[uwsgi]
+processes = 2
+socket = {{graphite_api_uwsgi_host}}:{{graphite_api_uwsgi_port}}
+plugins = python27
+pythonpath = {{graphite_api_dir}}
+home = {{graphite_api_dir}}/env
+mount = /={{graphite_api_dir}}/wsgi.py
+env = GRAPHITE_API_CONFIG={{graphite_api_dir}}/config.yml

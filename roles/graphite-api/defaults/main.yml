@@ -33,18 +33,24 @@ graphite_api_whisper_directories:
 #  pattern: ".*"
 #  retentions: "1m:1d,10m:7d"
 
-graphite_api_gunicorn_host: "{{inventory_hostname}}"
-graphite_api_gunicorn_port: 8080
-
 graphite_api_nginx: yes
 graphite_api_nginx_host: "{{inventory_hostname}}"
 graphite_api_nginx_port: 80
 graphite_api_nginx_allow_origin: '$http_origin'
 
-nginx_enabled: yes
-nginx_dir: /etc/nginx
-nginx_sites_enabled: "{{nginx_dir}}/sites-enabled"
-nginx_sites_available: "{{nginx_dir}}/sites-available"
+graphite_api_uwsgi: yes
+graphite_api_uwsgi_host: "{{inventory_hostname}}"
+graphite_api_uwsgi_port: 8080
+
+#nginx_enabled: yes
+#nginx_dir: /etc/nginx
+#nginx_sites_enabled: "{{nginx_dir}}/sites-enabled"
+#nginx_sites_available: "{{nginx_dir}}/sites-available"
+
+#uwsgi_enabled: yes
+#uwsgi_dir: /etc/uwsgi
+#uwsgi_apps_enabled: "{{uwsgi_dir}}/apps-enabled"
+#uwsgi_apps_available: "{{uwsgi_dir}}/apps-available"
 
 influxdb_enabled: yes
 influxdb_host: "{{inventory_hostname}}"
@@ -53,4 +59,3 @@ influxdb_db: metrics
 influxdb_user: root
 influxdb_pass: root
 
-#python_enabled: yes

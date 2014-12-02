@@ -4,6 +4,7 @@
   - python
   - nginx
   - influxdb
+  - uwsgi
   - graphite-api
   - grafana
 #  vars_files:

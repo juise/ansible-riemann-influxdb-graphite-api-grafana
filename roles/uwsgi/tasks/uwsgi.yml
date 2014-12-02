@@ -1,0 +1,7 @@
+---
+
+- name: Install uwsgi
+  apt: pkg={{item}}
+  with_items:
+  - uwsgi-plugin-python
+  - uwsgi

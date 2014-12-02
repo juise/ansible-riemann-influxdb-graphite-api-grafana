@@ -6,3 +6,4 @@
 
 - name: Enable nginx graphite-api site
   file: src={{nginx_sites_available}}/graphite-api.conf dest={{nginx_sites_enabled}}/graphite-api.conf state=link
+  notify: [nginx reload]

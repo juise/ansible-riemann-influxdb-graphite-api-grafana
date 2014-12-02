@@ -22,9 +22,9 @@
   sudo: yes
   sudo_user: "{{graphite_api_user}}"
   with_items:
-  - flask
-  - flask-cache
-  - gunicorn
+#  - flask
+#  - flask-cache
+#  - gunicorn
   - https://github.com/Dieterbe/graphite-api/tarball/support-templates2
 #  - graphite-api use instead patched version ^
 
@@ -48,3 +48,5 @@
   when: nginx_enabled and graphite_api_nginx
 
 - include: uwsgi.yml
+  tags: [graphite-api, graphite-api-uwsgi]
+  when: uwsgi_enabled and graphite_api_uwsgi

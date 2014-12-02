@@ -16,7 +16,8 @@ server {
     client_body_buffer_size 150k;
 
     location / {
-        proxy_pass http://{{graphite_api_gunicorn_host}}:{{graphite_api_gunicorn_port}};
+        include uwsgi_params;
+        uwsgi_pass {{graphite_api_uwsgi_host}}:{{graphite_api_uwsgi_port}};
 
 {% if graphite_api_nginx_allow_origin != "" %}
         add_header "Access-Control-Allow-Origin"      "{{graphite_api_nginx_allow_origin}}";
