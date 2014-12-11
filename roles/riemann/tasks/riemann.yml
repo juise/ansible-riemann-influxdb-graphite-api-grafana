@@ -1,0 +1,11 @@
+---
+
+- name: Download riemann
+  get_url: url=http://aphyr.com/riemann/riemann_{{riemann_ver}}.deb dest=/tmp/riemann-{{riemann_ver}}.deb
+
+- name: Install riemann
+  apt: deb=/tmp/riemann-{{riemann_ver}}.deb
+
+- name: Configure riemann
+  template: src=riemann.config.j2 dest={{riemann_dir}}/riemann.config
+  notify: [riemann reload]

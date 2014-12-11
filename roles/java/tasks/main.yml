@@ -1,0 +1,5 @@
+---
+
+- include: java.yml
+  when: java_enabled
+  tags: [java]

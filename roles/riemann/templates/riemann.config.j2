@@ -1,0 +1,23 @@
+; -*- mode: clojure; -*-
+; vim: filetype=clojure
+
+(logging/init {:file "{{riemann_log}}"})
+
+(load-plugins)
+
+(graphite-server :host "0.0.0.0"
+                 :port 2003)
+
+{% if riemann_influxdb %}
+(def main-influxdb (influxdb {:host "{{riemann_influxdb_host}}"
+                              :port {{riemann_influxdb_port}}
+                              :username "{{riemann_influxdb_user}}"
+                              :password "{{riemann_influxdb_pass}}"
+                              :db "{{riemann_influxdb_db}}"
+                              :series #(str (:host %) "." (:service %))}))
+{% endif %}
+
+(let [index (index)]
+  (streams
+    prn))
+

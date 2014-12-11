@@ -1,13 +1,15 @@
 ---
 
+java_enabled: yes
 python_enabled: yes
 
 nginx_enabled: yes
 uwsgi_enabled: yes
 
 # the follow options are mutually exclusive,
-# use pair carbon - whisper, or only influxdb
+# use pair carbon - whisper, or only riemann - influxdb
 carbon_enabled: no
+riemann_enabled: yes
 influxdb_enabled: yes
 
 graphite_api_enabled: yes
@@ -15,8 +17,9 @@ graphite_api_nginx: yes
 graphite_api_uwsgi: yes
 
 # the follow options are mutually exclusive
-# use pair carbon - whisper, or only influxdb
+# use pair carbon - whisper, or only riemann - influxdb
 graphite_api_whisper: no
 graphite_api_influxdb: yes
+riemann_influxdb: yes
 
 grafana_enabled: yes

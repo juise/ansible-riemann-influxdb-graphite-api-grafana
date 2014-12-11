@@ -1,10 +1,12 @@
 - hosts: all
   sudo: yes
   roles:
+  - java
   - python
   - nginx
   - uwsgi
   - carbon
+  - riemann
   - influxdb
   - graphite-api
   - grafana
