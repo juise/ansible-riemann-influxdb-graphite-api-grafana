@@ -8,7 +8,7 @@ riemann_log: /var/log/riemann/riemann.log
 riemann_influxdb: no
 riemann_influxdb_host: "{{inventory_hostname}}"
 riemann_influxdb_port: 8086
-riemann_influxdb_user: root
-riemann_influxdb_pass: root
+riemann_influxdb_user: metrics
+riemann_influxdb_pass: metrics
 riemann_influxdb_db: metrics
 

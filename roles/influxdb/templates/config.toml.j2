@@ -6,7 +6,7 @@
 # If hostname (on the OS) doesn't return a name that can be resolved by the other
 # systems in the cluster, you'll have to set the hostname to an IP or something
 # that can be resolved here.
-hostname = "{{inventory_hostname}}"
+hostname = "{{influxdb_host}}"
 
 bind-address = "{{influxdb_bind_addr}}"
 
@@ -21,7 +21,7 @@ reporting-disabled = false
 [logging]
 # logging level can be one of "fine", "debug", "info", "warn" or "error"
 level = "info"
-file = "{{influxdb_log_dir}}/log.txt"           # stdout to log to standard out, or syslog facility
+file = "{{influxdb_log_dir}}/log.txt"              # stdout to log to standard out, or syslog facility
 
 # Configure the admin server
 [admin]
@@ -29,7 +29,7 @@ port = {{influxdb_admin_port}}                                     # binding is 
 
 # Configure the http api
 [api]
-port = {{influxdb_api_port}}                                     # binding is disabled if the port isn't set
+port = {{influxdb_port}}                                     # binding is disabled if the port isn't set
 # ssl-port = 8084                               # ssl support is enabled if you set a port and cert
 # ssl-cert = /path/to/cert.pem
 

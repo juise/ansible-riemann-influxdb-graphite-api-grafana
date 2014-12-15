@@ -1,6 +1,7 @@
 [uwsgi]
-processes = 2
+processes = 4
 socket = {{graphite_api_uwsgi_host}}:{{graphite_api_uwsgi_port}}
+buffer-size = 8192
 plugins = python27
 home = {{graphite_api_dir}}/env
 module = graphite_api.app:app

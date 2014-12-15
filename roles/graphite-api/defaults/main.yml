@@ -19,8 +19,8 @@ graphite_api_uwsgi_port: 8080
 graphite_api_influxdb: no
 graphite_api_influxdb_host: "{{inventory_hostname}}"
 graphite_api_influxdb_port: 8086
-graphite_api_influxdb_user: root
-graphite_api_influxdb_pass: root
+graphite_api_influxdb_user: metrics
+graphite_api_influxdb_pass: metrics
 graphite_api_influxdb_db: metrics
 
 graphite_api_whisper: no
