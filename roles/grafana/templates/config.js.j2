@@ -19,6 +19,20 @@ define(['settings'], function(Settings) {
       *  - basic authentication: use url syntax http://username:password@domain:port
       */
 
+      datasources: {
+        graphite: {
+          type: 'graphite',
+          url: "http://{{graphite_host}}:{{graphite_port}}",
+        },
+        influxdb: {
+          type: 'influxdb',
+          url: "http://{{influxdb_host}}:{{influxdb_port}}/db/grafana-dashboards",
+          username: 'grafana-dashboards',
+          password: 'grafana-dashboards',
+          grafanaDB: true
+        }
+      },
+
       // InfluxDB example setup (the InfluxDB databases specified need to exist)
       /*
       datasources: {
@@ -33,19 +47,18 @@ define(['settings'], function(Settings) {
           url: "http://my_influxdb_server:8086/db/grafana",
           username: 'admin',
           password: 'admin',
-          grafanaDB: true
-        },
+          grafanaDB: true,
+        }
       },
       */
 
       // Graphite & Elasticsearch example setup
+      /*
       datasources: {
         graphite: {
           type: 'graphite',
-          url: "http://{{graphite_host}}:{{graphite_port}}",
-        }
-      },
-      /*
+          url: "http://my.graphite.server.com:8080",
+        },
         elasticsearch: {
           type: 'elasticsearch',
           url: "http://my.elastic.server.com:9200",
