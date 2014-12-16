@@ -30,7 +30,7 @@ influxdb:
      - ['', 30]
      - ['high-res-metrics', 10]
 cache:
-   CACHE_TYPE: 'filesystem'
-   CACHE_DIR: '/tmp/graphite-api-cache'
+    type: 'filesystem'
+    dir: '/tmp/graphite-api-cache'
 {% endif %}
 time_zone: {{graphite_api_timezone}}
