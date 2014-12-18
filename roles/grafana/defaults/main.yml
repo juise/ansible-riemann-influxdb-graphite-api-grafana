@@ -1,7 +1,7 @@
 ---
 
 grafana_enabled: no
-grafana_ver: 1.9.0-rc1
+grafana_ver: 1.9.0
 grafana_dir: /opt/grafana
 
 grafana_nginx_enabled: yes
