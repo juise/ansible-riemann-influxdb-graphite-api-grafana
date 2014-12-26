@@ -5,19 +5,30 @@
 
 (load-plugins)
 
+{% if riemann_influxdb %}
+(include "influxdb.clj")
+{% endif %}
+
 (graphite-server :host "0.0.0.0"
                  :port 2003)
 
 {% if riemann_influxdb %}
-(def main-influxdb (influxdb {:host "{{riemann_influxdb_host}}"
-                              :port {{riemann_influxdb_port}}
-                              :username "{{riemann_influxdb_user}}"
-                              :password "{{riemann_influxdb_pass}}"
-                              :db "{{riemann_influxdb_db}}"
-                              :series #(str (:host %) "." (:service %))}))
+(def main-influxdb (async-influxdb {:host "{{riemann_influxdb_host}}"
+                                    :port {{riemann_influxdb_port}}
+                                    :username "{{riemann_influxdb_user}}"
+                                    :password "{{riemann_influxdb_pass}}"
+                                    :db "{{riemann_influxdb_db}}"}))
 {% endif %}
 
 (let [index (index)]
   (streams
-    prn))
+    prn
 
+{% if riemann_influxdb %}
+    (where (not (service #"^riemann"))
+      #(main-influxdb (:service %) {:host  (:host %)
+                                    :time  (:time %)
+                                    :value (:metric %)
+                                    :name  (:service %)}))
+{% endif %}
+))

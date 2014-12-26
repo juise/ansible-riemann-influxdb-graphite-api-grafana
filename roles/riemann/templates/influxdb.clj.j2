@@ -1,0 +1,23 @@
+; -*- mode: clojure; -*-
+; vim: filetype=clojure
+
+;; Base InfluxDB library
+(require '[capacitor.core :as influx])
+;; Async API
+(require '[capacitor.async :as influx-async])
+
+;; Create an asynchronous InfluxDB client using the capacitor library
+(defn async-influxdb [opts]
+  (let [client (influx/make-client opts)
+
+       ;; Make a channel to buffer influxdb events
+       events-in (influx-async/make-chan)
+
+       ;; Make a channel to collect influxdb responses (ignored, really)
+       resp-out (influx-async/make-chan)]
+
+    ;; Start the run loop with a batch size of max 100 events and max 5 seconds
+    (influx-async/run! events-in resp-out client 100 5000)
+      (fn [series payload]
+        (let [p (merge payload {:series series})]
+          (influx-async/enqueue events-in p)))))

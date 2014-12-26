@@ -9,3 +9,7 @@
 - name: Configure riemann
   template: src=riemann.config.j2 dest={{riemann_dir}}/riemann.config
   notify: [riemann reload]
+
+- name: Configure riemann (influxdb)
+  template: src=influxdb.clj.j2 dest={{riemann_dir}}/influxdb.clj
+  notify: [riemann reload]

@@ -16,7 +16,7 @@ graphite_api_enabled: yes
 graphite_api_nginx: yes
 graphite_api_uwsgi: yes
 
-# the follow options are mutually exclusive
+# the follow options are mutually exclusive,
 # use pair carbon - whisper, or only riemann - influxdb
 graphite_api_whisper: no
 graphite_api_influxdb: yes
