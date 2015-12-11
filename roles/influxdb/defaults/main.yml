@@ -1,7 +1,7 @@
 ---
 
 influxdb_enabled: no
-influxdb_ver: latest_amd64
+influxdb_ver: 0.8.9_amd64
 influxdb_dir: /opt/influxdb
 influxdb_log_dir: /var/log/influxdb
 influxdb_host: "{{inventory_hostname}}"
